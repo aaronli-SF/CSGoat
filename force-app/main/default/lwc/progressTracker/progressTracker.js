@@ -170,7 +170,6 @@ export default class ProgressTracker extends LightningElement {
     }
 
     createNewTask(row){
-        console.log(JSON.stringify(row));
         const subject = this.currContactRecord.data.fields.Name.value + ' is blocked on: ' + row["Training_Task__r"]["Name"];
         const description = '';
         const priority = 'High';
