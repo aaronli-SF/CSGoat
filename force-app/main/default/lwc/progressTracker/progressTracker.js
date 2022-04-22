@@ -63,6 +63,8 @@ export default class ProgressTracker extends LightningElement {
     columns = COLUMNS;
     modalColumns = MODAL_COLUMNS;
     rowOffset = 0;
+    searchTimer;
+    doneTypingInterval = 300;
 
     @track taskModal = false;
     @track modalResults;
@@ -123,13 +125,19 @@ export default class ProgressTracker extends LightningElement {
 
     // Handlers and helpers below this line
     filterHandler(event){
+        clearTimeout(this.searchTimer);
         let eventSearchText = event.target.value;
-        this.searchText = eventSearchText;
+        this.searchTimer = setTimeout(()=>{
+            this.searchText = eventSearchText;
+        }, this.doneTypingInterval);
     }
 
     modalFilterHandler(event){
+        clearTimeout(this.searchTimer);
         let modalEventSearchText = event.target.value;
-        this.modalSearchText = modalEventSearchText;
+        this.searchTimer = setTimeout(()=>{
+            this.modalSearchText = modalEventSearchText;
+        }, this.doneTypingInterval);
     }
 
     handleRowAction(event){
