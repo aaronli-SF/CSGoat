@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Needed__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT( FLOOR( Training_Task__r.Expected_Duration_In_Minutes__c / 60) ) &amp; &quot;H &quot; &amp; TEXT(MOD( Training_Task__r.Expected_Duration_In_Minutes__c ,60)) &amp; &quot;M&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Time Needed</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

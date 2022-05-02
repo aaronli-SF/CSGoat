@@ -1,0 +1,121 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef1"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0001",
+            "Time_Needed__c": "0H 10M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef2"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0004",
+            "Time_Needed__c": "2H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef3"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0005",
+            "Time_Needed__c": "1H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef4"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0006",
+            "Time_Needed__c": "2H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef5"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0002",
+            "Time_Needed__c": "5H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef6"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0007",
+            "Time_Needed__c": "2H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef7"
+            },
+            "Due_Day__c": 90,
+            "Name": "PTA-0009",
+            "Time_Needed__c": "2H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef8"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0003",
+            "Time_Needed__c": "2H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef9"
+            },
+            "Due_Day__c": 15,
+            "Name": "PTA-0008",
+            "Time_Needed__c": "100H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef10"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0010",
+            "Time_Needed__c": "2H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef11"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0012",
+            "Time_Needed__c": "2H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef12"
+            },
+            "Due_Day__c": 5,
+            "Name": "PTA-0013",
+            "Time_Needed__c": "2H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Program_Task_Assignment__c",
+                "referenceId": "Program_Task_Assignment__cRef13"
+            },
+            "Due_Day__c": 15,
+            "Name": "PTA-0032",
+            "Time_Needed__c": "1H 0M"
+        }
+    ]
+}

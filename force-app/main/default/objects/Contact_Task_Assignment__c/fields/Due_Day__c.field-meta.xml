@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_Day__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>By which day in the training schedule should the employee complete this task?</inlineHelpText>
+    <label>Due Day</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

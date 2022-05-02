@@ -1,0 +1,74 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Training_Program__c",
+                "referenceId": "Training_Program__cRef1"
+            },
+            "Duration_in_days__c": 90,
+            "Expected_Duration_In_Minutes__c": 129600,
+            "Task_Count__c": 2,
+            "Name": "Product Manager Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Program__c",
+                "referenceId": "Training_Program__cRef2"
+            },
+            "Duration_in_days__c": 90,
+            "Expected_Duration_In_Minutes__c": 6240,
+            "Task_Count__c": 3,
+            "Name": "Technical Consultant Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Program__c",
+                "referenceId": "Training_Program__cRef3"
+            },
+            "Duration_in_days__c": 20,
+            "Expected_Duration_In_Minutes__c": 28800,
+            "Task_Count__c": 2,
+            "Name": "Sales Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Program__c",
+                "referenceId": "Training_Program__cRef4"
+            },
+            "Duration_in_days__c": 90,
+            "Expected_Duration_In_Minutes__c": 430,
+            "Task_Count__c": 3,
+            "Name": "Solutions Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Program__c",
+                "referenceId": "Training_Program__cRef5"
+            },
+            "Duration_in_days__c": 80,
+            "Expected_Duration_In_Minutes__c": 60,
+            "Task_Count__c": 1,
+            "Name": "Manager Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Program__c",
+                "referenceId": "Training_Program__cRef6"
+            },
+            "Duration_in_days__c": 20,
+            "Expected_Duration_In_Minutes__c": 28800,
+            "Task_Count__c": 1,
+            "Name": "Call Center Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Program__c",
+                "referenceId": "Training_Program__cRef7"
+            },
+            "Duration_in_days__c": 120,
+            "Expected_Duration_In_Minutes__c": 172800,
+            "Task_Count__c": 1,
+            "Name": "Marketing Training"
+        }
+    ]
+}

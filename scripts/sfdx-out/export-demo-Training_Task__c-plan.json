@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "Training_Task__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-demo-Training_Task__cs.json"
+        ]
+    }
+]

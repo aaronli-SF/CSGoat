@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "Training_Program__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-demo-Training_Program__cs.json"
+        ]
+    }
+]

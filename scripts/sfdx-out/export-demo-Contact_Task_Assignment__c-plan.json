@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "Contact_Task_Assignment__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-demo-Contact_Task_Assignment__cs.json"
+        ]
+    }
+]

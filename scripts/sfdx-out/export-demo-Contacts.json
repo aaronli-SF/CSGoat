@@ -1,0 +1,85 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef1"
+            },
+            "Email": "janesmith@csgoat.com",
+            "Name": "Jane Smith",
+            "Phone": "2596424752",
+            "ReportsToId": "@ContactRef3",
+            "Start_Date__c": "2022-03-10",
+            "Title": "Solutions Consultant"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef2"
+            },
+            "Email": "dons@csgoat.com",
+            "MailingAddress": {
+                "city": "San Francisco",
+                "country": "United States",
+                "geocodeAccuracy": null,
+                "latitude": null,
+                "longitude": null,
+                "postalCode": "94118",
+                "state": "CA",
+                "street": "123 12th Avenue"
+            },
+            "Name": "Donatello Splinter",
+            "Phone": "8527593312",
+            "Start_Date__c": "2022-03-08",
+            "Title": "Solutions Consultant"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef3"
+            },
+            "Email": "fredflintstone@csgoat.com",
+            "Name": "Fred Flintstone",
+            "Phone": "7561123852",
+            "ReportsToId": "@ContactRef6",
+            "Start_Date__c": "2022-03-07",
+            "Title": "Product Manager"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef4"
+            },
+            "Email": "jimmy@csgoat.com",
+            "Name": "Jimmy Neutron",
+            "Phone": "5264568523",
+            "ReportsToId": "@ContactRef3",
+            "Start_Date__c": "2022-03-08",
+            "Title": "Technical Consultant"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef5"
+            },
+            "Email": "jmay@csgoat.com",
+            "Name": "James May",
+            "Phone": "5268621595",
+            "ReportsToId": "@ContactRef3",
+            "Start_Date__c": "2022-03-07",
+            "Title": "Technical Consultant"
+        },
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef6"
+            },
+            "Email": "doubleoh@csgoat.com",
+            "Name": "James Bond",
+            "Phone": "4156125324",
+            "ReportsToId": "@ContactRef2",
+            "Start_Date__c": "2022-03-10",
+            "Title": "Technical Consultant"
+        }
+    ]
+}

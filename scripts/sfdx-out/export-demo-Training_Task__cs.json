@@ -1,0 +1,114 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef1"
+            },
+            "Expected_Duration_In_Minutes__c": 60,
+            "Task_Type__c": "Presentation",
+            "Name": "Conflict Resolution"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef2"
+            },
+            "Expected_Duration_In_Minutes__c": 120,
+            "Task_Type__c": "Meeting",
+            "Name": "Salesforce 101"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef3"
+            },
+            "Expected_Duration_In_Minutes__c": 120,
+            "Task_Type__c": "Video",
+            "Name": "Culture Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef4"
+            },
+            "Expected_Duration_In_Minutes__c": 6000,
+            "Task_Type__c": "Trail",
+            "Trailhead_Points__c": 8000,
+            "Name": "Consultant First Steps"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef5"
+            },
+            "Expected_Duration_In_Minutes__c": 120,
+            "Task_Type__c": "Meeting",
+            "Name": "Becoming CSGoat"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef6"
+            },
+            "Expected_Duration_In_Minutes__c": 45,
+            "Task_Type__c": "Meeting",
+            "Name": "Meet the Team"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef7"
+            },
+            "Expected_Duration_In_Minutes__c": 10,
+            "Task_Type__c": "Task",
+            "Name": "Sign Up for Benefits"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef8"
+            },
+            "Expected_Duration_In_Minutes__c": 300,
+            "Task_Type__c": "Presentation",
+            "Name": "Security Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef9"
+            },
+            "Expected_Duration_In_Minutes__c": 120,
+            "Task_Type__c": "Task",
+            "Name": "Complete Examination"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef10"
+            },
+            "Expected_Duration_In_Minutes__c": 90,
+            "Task_Type__c": "Presentation",
+            "Name": "Intro to Development"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef11"
+            },
+            "Expected_Duration_In_Minutes__c": 120,
+            "Task_Type__c": "Meeting",
+            "Name": "Client Training"
+        },
+        {
+            "attributes": {
+                "type": "Training_Task__c",
+                "referenceId": "Training_Task__cRef12"
+            },
+            "Expected_Duration_In_Minutes__c": 1200,
+            "Task_Type__c": "Trail",
+            "Trailhead_Points__c": 500,
+            "Name": "Javascript"
+        }
+    ]
+}

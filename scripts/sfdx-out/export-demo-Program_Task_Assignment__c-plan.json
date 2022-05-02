@@ -1,0 +1,10 @@
+[
+    {
+        "sobject": "Program_Task_Assignment__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "export-demo-Program_Task_Assignment__cs.json"
+        ]
+    }
+]

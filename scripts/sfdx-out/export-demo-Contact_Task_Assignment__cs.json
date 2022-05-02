@@ -1,0 +1,341 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef1"
+            },
+            "Completion_Date__c": "2022-03-30",
+            "Name": "CTA-0100",
+            "Due_Day__c": "2022-04-04",
+            "Expected_Time_To_Complete__c": "0H 10M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef2"
+            },
+            "Name": "CTA-0101",
+            "Due_Day__c": "2022-04-04",
+            "Expected_Time_To_Complete__c": "5H 0M",
+            "Status__c": "Not Started",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef3"
+            },
+            "Name": "CTA-0102",
+            "Due_Day__c": "2022-04-04",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Not Started",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef4"
+            },
+            "Completion_Date__c": "2022-04-27",
+            "Name": "CTA-0058",
+            "Due_Day__c": "2022-03-30",
+            "Expected_Time_To_Complete__c": "0H 10M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 12M",
+            "Time_Taken_In_Minutes__c": 12
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef5"
+            },
+            "Completion_Date__c": "2022-04-27",
+            "Name": "CTA-0059",
+            "Due_Day__c": "2022-03-30",
+            "Expected_Time_To_Complete__c": "5H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "2H 0M",
+            "Time_Taken_In_Minutes__c": 120
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef6"
+            },
+            "Completion_Date__c": "2022-04-27",
+            "Name": "CTA-0060",
+            "Due_Day__c": "2022-03-30",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef7"
+            },
+            "Name": "CTA-0055",
+            "Due_Day__c": "2022-03-23",
+            "Expected_Time_To_Complete__c": "0H 10M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef8"
+            },
+            "Name": "CTA-0056",
+            "Due_Day__c": "2022-03-23",
+            "Expected_Time_To_Complete__c": "5H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef9"
+            },
+            "Name": "CTA-0057",
+            "Due_Day__c": "2022-03-23",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef10"
+            },
+            "Name": "CTA-0093",
+            "Due_Day__c": "2022-04-03",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef11"
+            },
+            "Name": "CTA-0094",
+            "Due_Day__c": "2022-06-27",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef12"
+            },
+            "Name": "CTA-0095",
+            "Due_Day__c": "2022-04-13",
+            "Expected_Time_To_Complete__c": "100H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef13"
+            },
+            "Name": "CTA-0127",
+            "Due_Day__c": "2022-04-15",
+            "Expected_Time_To_Complete__c": "1H 0M",
+            "Status__c": "Not Started",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef14"
+            },
+            "Completion_Date__c": "2022-03-31",
+            "Name": "CTA-0119",
+            "Due_Day__c": "2022-04-05",
+            "Expected_Time_To_Complete__c": "0H 10M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef15"
+            },
+            "Name": "CTA-0120",
+            "Due_Day__c": "2022-04-05",
+            "Expected_Time_To_Complete__c": "5H 0M",
+            "Status__c": "Not Started",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef16"
+            },
+            "Name": "CTA-0121",
+            "Due_Day__c": "2022-04-05",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Not Started",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef17"
+            },
+            "Completion_Date__c": "2022-03-31",
+            "Name": "CTA-0122",
+            "Due_Day__c": "2022-04-05",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef18"
+            },
+            "Completion_Date__c": "2022-03-31",
+            "Name": "CTA-0123",
+            "Due_Day__c": "2022-06-29",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef19"
+            },
+            "Completion_Date__c": "2022-03-31",
+            "Name": "CTA-0124",
+            "Due_Day__c": "2022-04-15",
+            "Expected_Time_To_Complete__c": "100H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef20"
+            },
+            "Name": "CTA-0128",
+            "Due_Day__c": "2022-04-05",
+            "Expected_Time_To_Complete__c": "1H 0M",
+            "Status__c": "Not Started",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef21"
+            },
+            "Name": "CTA-0129",
+            "Due_Day__c": "2022-04-05",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Not Started",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef22"
+            },
+            "Completion_Date__c": "2022-04-28",
+            "Name": "CTA-0130",
+            "Due_Day__c": "2022-04-28",
+            "Expected_Time_To_Complete__c": "1H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef23"
+            },
+            "Completion_Date__c": "2022-03-28",
+            "Name": "CTA-0031",
+            "Due_Day__c": "2022-03-30",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "In Progress",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef24"
+            },
+            "Completion_Date__c": "2022-04-28",
+            "Name": "CTA-0036",
+            "Due_Day__c": "2022-03-30",
+            "Expected_Time_To_Complete__c": "0H 10M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef25"
+            },
+            "Completion_Date__c": "2022-04-28",
+            "Name": "CTA-0037",
+            "Due_Day__c": "2022-03-30",
+            "Expected_Time_To_Complete__c": "5H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef26"
+            },
+            "Completion_Date__c": "2022-04-28",
+            "Name": "CTA-0038",
+            "Due_Day__c": "2022-03-29",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef27"
+            },
+            "Completion_Date__c": "2022-03-29",
+            "Name": "CTA-0070",
+            "Due_Day__c": "2022-06-27",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef28"
+            },
+            "Completion_Date__c": "2022-03-29",
+            "Name": "CTA-0071",
+            "Due_Day__c": "2022-04-13",
+            "Expected_Time_To_Complete__c": "100H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        },
+        {
+            "attributes": {
+                "type": "Contact_Task_Assignment__c",
+                "referenceId": "Contact_Task_Assignment__cRef29"
+            },
+            "Completion_Date__c": "2022-03-29",
+            "Name": "CTA-0069",
+            "Due_Day__c": "2022-04-03",
+            "Expected_Time_To_Complete__c": "2H 0M",
+            "Status__c": "Complete",
+            "Time_Taken__c": "0H 0M"
+        }
+    ]
+}
