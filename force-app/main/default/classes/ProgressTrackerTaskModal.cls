@@ -43,4 +43,22 @@ public with sharing class ProgressTrackerTaskModal {
         update updatedTask;
         return updatedTask;
     }
+
+    @AuraEnabled 
+    public static List<Contact_Task_Assignment__c> bulkCompleteTrainingTask(List<Id> taskList){
+        List<Contact_Task_Assignment__c> resultList = new List<Contact_Task_Assignment__c>();
+        System.debug(taskList);
+        for (Integer i = 0; i < taskList.size(); i++){
+            Contact_Task_Assignment__c updatedTask = [SELECT Status__c, Completion_Date__c
+                                                        FROM Contact_Task_Assignment__c 
+                                                        WHERE ID = :taskList[i]];
+            updatedTask.Status__c = 'Complete';
+            updatedTask.Completion_Date__c = Date.today();
+            resultList.add(updatedTask);
+        }
+        if(!resultList.isEmpty()){
+            update resultList;
+        }
+        return resultList;
+    }
 }

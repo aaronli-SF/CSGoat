@@ -6,6 +6,7 @@ import populateTable from '@salesforce/apex/ProgressTrackerController.populateTa
 import populateModal from '@salesforce/apex/ProgressTrackerTaskModal.populateModal';
 import saveTask from '@salesforce/apex/ProgressTrackerTaskModal.saveTask';
 import completeTrainingTask from '@salesforce/apex/ProgressTrackerTaskModal.completeTrainingTask';
+import bulkCompleteTrainingTask from '@salesforce/apex/ProgressTrackerTaskModal.bulkCompleteTrainingTask';
 
 //The contact owner ID
 let owner;
@@ -73,6 +74,7 @@ export default class ProgressTracker extends LightningElement {
     @track selectedProgram;
     @track searchText='';
     @track modalSearchText='';
+    @track currentSelectedRows=[];
 
     @api recordId;
 
@@ -122,6 +124,44 @@ export default class ProgressTracker extends LightningElement {
 
     // Call getRecord in order to return Contact Name for the Task generation
     @wire(getRecord, {recordId: '$recordId', fields:['Contact.Name']}) currContactRecord;
+
+    handleModalRowSelection(){
+        const selectedRows = this.template.querySelector('[data-id="modal_table"]').getSelectedRows();
+        let incompleteTaskArray=[];
+
+        for (let i = 0; i < selectedRows.length; i++){
+            if (!(selectedRows[i]["Status__c"] === 'Complete')){
+                incompleteTaskArray.push(selectedRows[i]);
+            }
+        }
+        this.currentSelectedRows = incompleteTaskArray;
+    }
+
+    handleMultiComplete(){
+        let idList = [];
+        for (let i = 0; i < this.currentSelectedRows.length; i++){
+            idList.push(this.currentSelectedRows[i]["Id"])
+        }
+        bulkCompleteTrainingTask({taskList: idList})
+            .then(task=>{
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: "Success",
+                        message: "Training Tasks Marked As Complete",
+                        variant: "Success"
+                    })
+                );
+            })
+            .catch(error=>{
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Error updating records',
+                        message: error.body.message,
+                        variant: 'error'
+                    })
+                );
+            });
+    }
 
     // Handlers and helpers below this line
     filterHandler(event){

@@ -23,15 +23,17 @@
                 </header>
                 <div class="slds-modal__content slds-p-around_medium">
                     <lightning-input type="text" placeholder="Filter by Task" field-name="Modal Search Field" onchange={modalFilterHandler} value={modalSearchText}></lightning-input>
-                    <lightning-datatable
+                    <lightning-datatable data-id="modal_table"
                         key-field="id"
                         data={modalResults}
                         row-number-offset={rowOffset}
                         onrowaction={handleModalRowAction}
+                        onrowselection={handleModalRowSelection}
                         columns={modalColumns}>
                     </lightning-datatable>
                 </div>
                 <footer class="slds-modal__footer">
+                    <lightning-button variant="Neutral" label="Complete Selected" title="Complete Selected" onclick={handleMultiComplete}></lightning-button>
                     <lightning-button variant="brand" label="Close" title="Close" onclick={closeModal}></lightning-button>
                 </footer>
             </div >
