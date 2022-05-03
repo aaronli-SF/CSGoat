@@ -1,15 +1,8 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import populateTable from '@salesforce/apex/ProgressTrackerController.populateTable';
-import populateModal from '@salesforce/apex/ProgressTrackerTaskModal.populateModal';
-import saveTask from '@salesforce/apex/ProgressTrackerTaskModal.saveTask';
-import completeTrainingTask from '@salesforce/apex/ProgressTrackerTaskModal.completeTrainingTask';
-import bulkCompleteTrainingTask from '@salesforce/apex/ProgressTrackerTaskModal.bulkCompleteTrainingTask';
 
-//The contact owner ID
-let owner;
 
 const COLUMNS = [
     {label: 'Program', fieldName: 'Training_Program_URL', type:'url',
@@ -34,47 +27,19 @@ const COLUMNS = [
     }
 ];
 
-const MODAL_COLUMNS = [
-    {label: 'Task', fieldName: 'Modal_Training_Task_URL', type:'url',
-        typeAttributes: {
-            label: {
-                fieldName: 'Modal_Training_Task_Name'
-            }
-        }
-    },
-    {label: 'Status', fieldName: 'Modal_Status'},
-    {label: 'Complete?', type: 'button',
-        typeAttributes:{
-            label: 'Mark Complete',
-            name: 'completedTask',
-            title: 'completedTaskTitle',
-            disabled: false
-        }
-    },
-    {label: 'Blocked?', type: 'button',
-        typeAttributes:{
-            label: 'Notify Manager',
-            name: 'blockedTask',
-            title: 'blockedTaskTitle',
-            disabled: false
-        }
-    }
-];
+
 export default class ProgressTracker extends LightningElement {
     columns = COLUMNS;
-    modalColumns = MODAL_COLUMNS;
     rowOffset = 0;
     searchTimer;
     doneTypingInterval = 300;
 
     @track taskModal = false;
-    @track modalResults;
     @track record;
     @track error;
     @track selectedProgram;
     @track searchText='';
-    @track modalSearchText='';
-    @track currentSelectedRows=[];
+    @track currentContactRecord;
 
     @api recordId;
 
@@ -101,66 +66,18 @@ export default class ProgressTracker extends LightningElement {
         }
     }
 
-    @wire(populateModal, {contactId:'$recordId', programId:'$selectedProgram', searchText:'$modalSearchText'}) modalData({error, data}){
-        if(data){
-            //Grab the first owner id because even though there may be more than one data entry, the owner of the contact
-            // remains the same.
-            owner = data[0]["Contact__r"]["ReportsTo"]["Owner"]["Id"];
-            this.modalResults = data.map((element) => ({
-                ...element,
-                ...{
-                    'Modal_Training_Task_URL': '/lightning/r/Contact_Task_Assignment__c/'+element.Id+'/view',
-                    'Modal_Training_Task_Name': element.Training_Task__r.Name,
-                    'Modal_Status': element.Status__c
-                }
-            }));
-            this.error = undefined;
-        }
-        if(error){
-            this.error=error;
-            this.modalResults=undefined;
-        }
-    }
 
     // Call getRecord in order to return Contact Name for the Task generation
-    @wire(getRecord, {recordId: '$recordId', fields:['Contact.Name']}) currContactRecord;
-
-    handleModalRowSelection(){
-        const selectedRows = this.template.querySelector('[data-id="modal_table"]').getSelectedRows();
-        let incompleteTaskArray=[];
-
-        for (let i = 0; i < selectedRows.length; i++){
-            if (!(selectedRows[i]["Status__c"] === 'Complete')){
-                incompleteTaskArray.push(selectedRows[i]);
-            }
+    @wire(getRecord, {recordId: '$recordId', fields:['Contact.Name']}) currContactRecord({error, data}){
+        if(data){
+            this.currentContactRecord = data;
+            this.error = undefined;
         }
-        this.currentSelectedRows = incompleteTaskArray;
-    }
-
-    handleMultiComplete(){
-        let idList = [];
-        for (let i = 0; i < this.currentSelectedRows.length; i++){
-            idList.push(this.currentSelectedRows[i]["Id"])
+        
+        if(error){
+            this.error=error;
+            this.currentContactRecord=undefined;
         }
-        bulkCompleteTrainingTask({taskList: idList})
-            .then(task=>{
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: "Success",
-                        message: "Training Tasks Marked As Complete",
-                        variant: "Success"
-                    })
-                );
-            })
-            .catch(error=>{
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error updating records',
-                        message: error.body.message,
-                        variant: 'error'
-                    })
-                );
-            });
     }
 
     // Handlers and helpers below this line
@@ -172,90 +89,17 @@ export default class ProgressTracker extends LightningElement {
         }, this.doneTypingInterval);
     }
 
-    modalFilterHandler(event){
-        clearTimeout(this.searchTimer);
-        let modalEventSearchText = event.target.value;
-        this.searchTimer = setTimeout(()=>{
-            this.modalSearchText = modalEventSearchText;
-        }, this.doneTypingInterval);
-    }
-
     handleRowAction(event){
         const row = event.detail.row;
         this.setTrainingProgram(row);
         this.taskModal=true;
     }
 
-    handleModalRowAction(event){
-        const row = event.detail.row;
-        if (event.detail.action.name === 'blockedTask'){
-            this.createNewTask(row);
-        } else if (event.detail.action.name === 'completedTask'){
-            this.completeTask(row);            
-        }
-    }
-
-    completeTask(row){
-        completeTrainingTask({associatedTask: row["Id"]})
-                .then(task=>{
-                    this.dispatchEvent(
-                        new ShowToastEvent({
-                            title: "Success",
-                            message: "Training Task Marked As Complete",
-                            variant: "Success"
-                        })
-                    );
-                })
-                .catch(error=>{
-                    this.dispatchEvent(
-                        new ShowToastEvent({
-                            title: 'Error updating record',
-                            message: error.body.message,
-                            variant: 'error'
-                        })
-                    );
-                });
-    }
-
-    createNewTask(row){
-        const subject = this.currContactRecord.data.fields.Name.value + ' is blocked on: ' + row["Training_Task__r"]["Name"];
-        const description = '';
-        const priority = 'High';
-        const type = 'Other';
-        saveTask({subject: subject, 
-                    description: description, 
-                    priority: priority, 
-                    type: type, 
-                    owner: owner,
-                    taskRelatedId: row["Training_Task__c"], 
-                    contactId: this.recordId})
-            .then(task=>{
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: "Success",
-                        message: "Task Created",
-                        variant: "Success"
-                    })
-                );
-            })
-            .catch(error=>{
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error creating record',
-                        message: error.body.message,
-                        variant: 'error'
-                    })
-                );
-            });
-        this.closeModal()
-    }
-
     setTrainingProgram(row){
         this.selectedProgram = row["Training_Program__c"];
     }
 
-    closeModal(){
-        this.taskModal = false;
-        this.modalSearchText = '';
+    closeHandler(){
+        this.taskModal=false;
     }
 }

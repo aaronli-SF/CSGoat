@@ -1,0 +1,27 @@
+<template>
+    <section class="slds-modal slds-fade-in-open slds-backdrop">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon" title="Close" onclick={closeModal}>
+                    <lightning-icon icon-name="utility:close" variant="inverse" alternative-text="close" size="small"></lightning-icon>
+                </button>
+                <h2 class="slds-text-heading_medium slds-hyphenate">Current Tasks</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <lightning-input type="text" placeholder="Filter by Task" field-name="Modal Search Field" onchange={modalFilterHandler} value={modalSearchText}></lightning-input>
+                <lightning-datatable data-id="modal_table"
+                    key-field="id"
+                    data={modalResults}
+                    row-number-offset={rowOffset}
+                    onrowaction={handleModalRowAction}
+                    onrowselection={handleModalRowSelection}
+                    columns={modalColumns}>
+                </lightning-datatable>
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning-button variant="Neutral" label="Complete Selected" title="Complete Selected" onclick={handleMultiComplete}></lightning-button>
+                <lightning-button variant="brand" label="Close" title="Close" onclick={closeModal}></lightning-button>
+            </footer>
+        </div >
+    </section>
+</template>
