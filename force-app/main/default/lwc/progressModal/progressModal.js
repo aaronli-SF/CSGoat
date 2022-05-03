@@ -50,13 +50,11 @@ export default class ProgressModal extends LightningElement {
     @track modalSearchText='';
     @track modalResults;
 
-
     @wire(populateModal, {contactId:'$recordId', programId:'$selectedProgram', searchText:'$modalSearchText'}) modalData({error, data}){
         if(data){
             //Grab the first owner id because even though there may be more than one data entry, the owner of the contact
             // remains the same.
             owner = data[0]["Contact__r"]["ReportsTo"]["Owner"]["Id"];
-            console.log(owner);
             this.modalResults = data.map((element) => ({
                 ...element,
                 ...{
@@ -117,6 +115,7 @@ export default class ProgressModal extends LightningElement {
                         variant: "Success"
                     })
                 );
+                this.closeModal();
             })
             .catch(error=>{
                 this.dispatchEvent(
@@ -126,6 +125,7 @@ export default class ProgressModal extends LightningElement {
                         variant: 'error'
                     })
                 );
+                this.closeModal();
             });
     }
 
@@ -139,6 +139,7 @@ export default class ProgressModal extends LightningElement {
                             variant: "Success"
                         })
                     );
+                    this.closeModal();
                 })
                 .catch(error=>{
                     this.dispatchEvent(
@@ -148,6 +149,7 @@ export default class ProgressModal extends LightningElement {
                             variant: 'error'
                         })
                     );
+                    this.closeModal();
                 });
     }
 
@@ -163,7 +165,6 @@ export default class ProgressModal extends LightningElement {
                     owner: owner,
                     taskRelatedId: row["Training_Task__c"], 
                     contactId: this.recordId})
-            //TODO: it works but it doesn't dispatch??
             .then(task=>{
                 this.dispatchEvent(
                     new ShowToastEvent({
@@ -172,6 +173,7 @@ export default class ProgressModal extends LightningElement {
                         variant: "Success"
                     })
                 );
+                this.closeModal();
             })
             .catch(error=>{
                 this.dispatchEvent(
@@ -181,8 +183,8 @@ export default class ProgressModal extends LightningElement {
                         variant: 'error'
                     })
                 );
+                this.closeModal();
             });
-        this.closeModal()
     }
 
     closeModal(){
