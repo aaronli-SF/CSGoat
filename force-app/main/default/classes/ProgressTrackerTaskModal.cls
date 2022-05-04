@@ -47,11 +47,19 @@ public with sharing class ProgressTrackerTaskModal {
     @AuraEnabled 
     public static List<Contact_Task_Assignment__c> bulkCompleteTrainingTask(List<Id> taskList){
         List<Contact_Task_Assignment__c> resultList = new List<Contact_Task_Assignment__c>();
-        System.debug(taskList);
-        for (Integer i = 0; i < taskList.size(); i++){
-            Contact_Task_Assignment__c updatedTask = [SELECT Status__c, Completion_Date__c
-                                                        FROM Contact_Task_Assignment__c 
-                                                        WHERE ID = :taskList[i]];
+
+        Set<ID> taskIDs = new Set<ID>();
+        for(Integer i = 0; i < taskList.size(); i++){
+            taskIDs.add(taskList[i]);
+        }
+        Map<ID, Contact_Task_Assignment__c> assignmentMap = new Map<ID, Contact_Task_Assignment__c>(
+            [SELECT Status__c, Completion_Date__c
+                FROM Contact_Task_Assignment__c 
+                WHERE ID IN :taskIDs]
+        );
+
+        for(Integer i = 0; i < taskList.size(); i++){
+            Contact_Task_Assignment__c updatedTask = assignmentMap.get(taskList[i]);
             updatedTask.Status__c = 'Complete';
             updatedTask.Completion_Date__c = Date.today();
             resultList.add(updatedTask);

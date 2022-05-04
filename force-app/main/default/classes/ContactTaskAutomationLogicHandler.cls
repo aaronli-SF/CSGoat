@@ -9,31 +9,38 @@ public with sharing class ContactTaskAutomationLogicHandler {
             multiple = true;
         }
 
+        Set<ID> taskIdSet = new Set<ID>();
+        for (Contact_Task_Assignment__c triggeredCta: ctaTrigger){
+            taskIdSet.add(triggeredCta.Training_Task__c);
+        }
+
+        Map<ID, Training_Task__c> taskMap = new Map<ID, Training_Task__c>(
+            [SELECT Expected_Duration_In_Minutes__c
+                FROM Training_Task__c
+                WHERE Id IN :taskIdSet]
+        );
+        
         for (Contact_Task_Assignment__c triggeredCta: ctaTrigger){
             ID currTask = triggeredCta.Training_Task__c;
-
             Program_Contact_Assignment__c pca = programContactAssignmentFetch(triggeredCta);
-            
-            List<Training_Task__c> task = [SELECT Expected_Duration_In_Minutes__c
-                                            FROM Training_Task__c
-                                            WHERE Id = :currTask];
+            Training_Task__c task = taskMap.get(currTask);
             
             //Create a result list to update
             if (triggeredCta.Status__c == 'Complete'){
                 //Handle bulk apex change
                 if (multiple == true){
                     if (myTime != Null){
-                        myTime += task[0].Expected_Duration_In_Minutes__c;
+                        myTime += task.Expected_Duration_In_Minutes__c;
                     } else {
-                        myTime = task[0].Expected_Duration_In_Minutes__c;
+                        myTime = task.Expected_Duration_In_Minutes__c;
                     }
                     pca.Time_Taken__c = myTime;
                 //Handle individual apex change 
                 } else {
                     if (pca.Time_Taken__c != Null){
-                        pca.Time_Taken__c += task[0].Expected_Duration_In_Minutes__c;
+                        pca.Time_Taken__c += task.Expected_Duration_In_Minutes__c;
                     } else {
-                        pca.Time_Taken__c = task[0].Expected_Duration_In_Minutes__c;
+                        pca.Time_Taken__c = task.Expected_Duration_In_Minutes__c;
                     }
                 }
                 resultMap.put(pca.Training_Program__c, pca);
