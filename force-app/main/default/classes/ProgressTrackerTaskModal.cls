@@ -79,13 +79,14 @@ public with sharing class ProgressTrackerTaskModal {
     @AuraEnabled
     public static string updateTimeTakenInMinutes(Object data) {
         // cta update DML list
+        System.debug('data = ' + data);
         List<Contact_Task_Assignment__c> ctaUpdate = new List<Contact_Task_Assignment__c>();
         // create a list of CTADraftValues that contains the TimeTakenInMinutes and Id
         List<CTADraftValues> ctaData = (List<CTADraftValues>) JSON.deserialize(
             JSON.serialize(data),
             List<CTADraftValues>.class
         );
-
+        System.debug('ctaData = ' + ctaData);
         // create a map to quickly access TimeTakenInMinutes and ID
         Map<Id,Decimal> ctaNewMap = new Map<Id,Integer>();
         // create a set to ensure key uniqueness and pass into SOQL
@@ -110,8 +111,12 @@ public with sharing class ProgressTrackerTaskModal {
             ctaUpdate.add(cta);
         }
 
+        System.debug(ctaUpdate);
+
         try {
             if (ctaUpdate.size() > 0) update ctaUpdate;
+
+            System.debug('entered try statement ' + ctaUpdate);
             //System.debug('ctaForUpdate = ' + ctaForUpdate);
             return 'Success: contact task assignments updated successfully';
         }

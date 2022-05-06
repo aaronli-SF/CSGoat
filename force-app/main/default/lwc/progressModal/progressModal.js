@@ -100,6 +100,7 @@ export default class ProgressModal extends LightningElement {
         try {
             // Pass edited fields to the updateContactsTaskAssignment Apex controller
             console.log('entered try statement');
+            console.log(JSON.stringify(updatedFields));
             const result = await updateTimeTakenInMinutes({data: updatedFields});
             //console.log(JSON.stringify("Apex update result: "+ result));
             getRecordNotifyChange(notifyChangeIds);
