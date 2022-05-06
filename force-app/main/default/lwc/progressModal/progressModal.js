@@ -1,5 +1,11 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+// import { updateRecord } from 'lightning/uiRecordApi';
+// import TIME_TAKEN_IN_MINUTES_FIELD from '@salesforce/schema/Contact_Task_Assignment__c.Time_Taken_In_Minutes__c';
+// import ID_FIELD from 'salesforce/schema/Contact_Task_Assignment__c.Id';
+import updateTimeTakenInMinutes from '@salesforce/apex/ProgressTrackerTaskModal.updateTimeTakenInMinutes';
+import { getRecordNotifyChange } from 'lightning/uiRecordApi';
+import { refreshApex } from '@salesforce/apex';
 
 import saveTask from '@salesforce/apex/ProgressTrackerTaskModal.saveTask';
 import completeTrainingTask from '@salesforce/apex/ProgressTrackerTaskModal.completeTrainingTask';
@@ -18,6 +24,15 @@ const MODAL_COLUMNS = [
         }
     },
     {label: 'Status', fieldName: 'Modal_Status'},
+    {label: 'Date Completed', fieldName: 'Modal_Date_Completed'},
+    {label: 'Time Taken in Minutes', fieldName: 'Modal_Time_Taken_In_Minutes', editable:true, type: 'number',
+        typeAttributes:{
+            label: 'Time Taken in Minutes',
+            name: 'timeTakenInMinutes',
+            title: 'timeTakenInMinutesTitle',
+            disabled: false
+        }
+    },
     {label: 'Complete?', type: 'button',
         typeAttributes:{
             label: 'Mark Complete',
@@ -41,6 +56,7 @@ export default class ProgressModal extends LightningElement {
     doneTypingInterval = 300;
     modalColumns = MODAL_COLUMNS;
     rowOffset = 0;
+    refreshData;
 
     @api currentContactRecord;
     @api recordId;
@@ -50,26 +66,66 @@ export default class ProgressModal extends LightningElement {
     @track modalSearchText='';
     @track modalResults;
 
-    @wire(populateModal, {contactId:'$recordId', programId:'$selectedProgram', searchText:'$modalSearchText'}) modalData({error, data}){
-        if(data){
+    @wire(populateModal, {contactId:'$recordId', programId:'$selectedProgram', searchText:'$modalSearchText'}) modalData(result){
+        if(result.data){
             //Grab the first owner id because even though there may be more than one data entry, the owner of the contact
             // remains the same.
-            owner = data[0]["Contact__r"]["ReportsTo"]["Owner"]["Id"];
-            this.modalResults = data.map((element) => ({
+            owner = result.data[0]["Contact__r"]["ReportsTo"]["Owner"]["Id"];
+            this.modalResults = result.data.map((element) => ({
                 ...element,
                 ...{
                     'Modal_Training_Task_URL': '/lightning/r/Contact_Task_Assignment__c/'+element.Id+'/view',
                     'Modal_Training_Task_Name': element.Training_Task__r.Name,
-                    'Modal_Status': element.Status__c
+                    'Modal_Status': element.Status__c,
+                    'Modal_Date_Completed': element.Completion_Date__c,
+                    'Modal_Time_Taken_In_Minutes': element.Time_Taken_In_Minutes__c
                 }
             }));
             this.error = undefined;
+            this.refreshData = result;
         }
         
-        if(error){
-            this.error=error;
+        else if(result.error){
+            this.error=result.error;
             this.modalResults=undefined;
         }
+    }
+
+    async handleSave(event) {
+        const updatedFields = event.detail.draftValues;
+        console.log(JSON.stringify(updatedFields));
+        // Prepare the record IDs for getRecordNotifyChange()
+        const notifyChangeIds = updatedFields.map(row => { return { "recordId": row.Id } });
+     
+        try {
+            // Pass edited fields to the updateContactsTaskAssignment Apex controller
+            console.log('entered try statement');
+            const result = await updateTimeTakenInMinutes({data: updatedFields});
+            //console.log(JSON.stringify("Apex update result: "+ result));
+            getRecordNotifyChange(notifyChangeIds);
+            // Display fresh data in the datatable
+            console.log('refreshData = ' + JSON.stringify(this.refreshData));
+            await refreshApex(this.refreshData);
+
+            // console.log('refreshedApex');
+
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Time Taken In Minutes updated',
+                    variant: 'success'
+                })
+            );
+
+       } catch(error) {
+               this.dispatchEvent(
+                   new ShowToastEvent({
+                       title: 'Error updating or refreshing records',
+                       message: error.body.message,
+                       variant: 'error'
+                   })
+             );
+        };
     }
 
     modalFilterHandler(event){
