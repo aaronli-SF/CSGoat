@@ -1,16 +1,16 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-// import { updateRecord } from 'lightning/uiRecordApi';
-// import TIME_TAKEN_IN_MINUTES_FIELD from '@salesforce/schema/Contact_Task_Assignment__c.Time_Taken_In_Minutes__c';
-// import ID_FIELD from 'salesforce/schema/Contact_Task_Assignment__c.Id';
-import updateTimeTakenInMinutes from '@salesforce/apex/ProgressTrackerTaskModal.updateTimeTakenInMinutes';
 import { getRecordNotifyChange } from 'lightning/uiRecordApi';
 import { refreshApex } from '@salesforce/apex';
+import { loadStyle } from "lightning/platformResourceLoader";
+import modal from "@salesforce/resourceUrl/customModalSize";
+
 
 import saveTask from '@salesforce/apex/ProgressTrackerTaskModal.saveTask';
 import completeTrainingTask from '@salesforce/apex/ProgressTrackerTaskModal.completeTrainingTask';
 import bulkCompleteTrainingTask from '@salesforce/apex/ProgressTrackerTaskModal.bulkCompleteTrainingTask';
 import populateModal from '@salesforce/apex/ProgressTrackerTaskModal.populateModal';
+import updateTimeTakenInMinutes from '@salesforce/apex/ProgressTrackerTaskModal.updateTimeTakenInMinutes';
 
 //The contact owner ID
 let owner;
@@ -65,6 +65,10 @@ export default class ProgressModal extends LightningElement {
     @track currentSelectedRows=[];
     @track modalSearchText='';
     @track modalResults;
+
+    connectedCallback(){
+        loadStyle(this, modal);
+    }
 
     @wire(populateModal, {contactId:'$recordId', programId:'$selectedProgram', searchText:'$modalSearchText'}) modalData(result){
         if(result.data){
