@@ -140,7 +140,6 @@ private class ProgressTrackerTaskModalTests {
         for (Contact_Task_Assignment__c ctatemp: cta){
             ctaSet.add(ctatemp.Id);
         }
-
         // method requires a list of values                                     
         List<CTADraftValues> ctaInputList = new List<CTADraftValues>();
 
@@ -161,10 +160,7 @@ private class ProgressTrackerTaskModalTests {
                 FROM Contact_Task_Assignment__c
                 WHERE id IN :ctaSet]
         );
-        
-        
         System.assertEquals(60, ctaCheck.get(ctaInput1.id)?.Time_Taken_In_Minutes__c);
         System.assertEquals(50, ctaCheck.get(ctaInput2.id)?.Time_Taken_In_Minutes__c);
-        
     }
 }
