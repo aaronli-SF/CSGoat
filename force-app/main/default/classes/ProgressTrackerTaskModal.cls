@@ -89,7 +89,6 @@ public with sharing class ProgressTrackerTaskModal {
         // create a set to ensure key uniqueness and pass into SOQL
         Set<Id> ctaSet = new Set<Id>();
         for (CTADraftValues ctaDraftValue: ctaData){
-            System.debug('ctaDraftValue = ' + ctaDraftValue);
             ctaNewMap.put(ctaDraftValue.Id, ctaDraftValue.Modal_Time_Taken_In_Minutes);
             ctaSet.add(ctaDraftValue.Id);
         }
