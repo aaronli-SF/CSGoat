@@ -93,22 +93,15 @@ export default class ProgressModal extends LightningElement {
 
     async handleSave(event) {
         const updatedFields = event.detail.draftValues;
-        console.log(JSON.stringify(updatedFields));
         // Prepare the record IDs for getRecordNotifyChange()
         const notifyChangeIds = updatedFields.map(row => { return { "recordId": row.Id } });
      
         try {
             // Pass edited fields to the updateContactsTaskAssignment Apex controller
-            console.log('entered try statement');
             const result = await updateTimeTakenInMinutes({data: updatedFields});
-            //console.log(JSON.stringify("Apex update result: "+ result));
             getRecordNotifyChange(notifyChangeIds);
             // Display fresh data in the datatable
-            console.log('refreshData = ' + JSON.stringify(this.refreshData));
             await refreshApex(this.refreshData);
-
-            // console.log('refreshedApex');
-
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
@@ -116,7 +109,6 @@ export default class ProgressModal extends LightningElement {
                     variant: 'success'
                 })
             );
-
        } catch(error) {
                this.dispatchEvent(
                    new ShowToastEvent({

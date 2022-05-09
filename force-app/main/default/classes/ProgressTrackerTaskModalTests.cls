@@ -32,6 +32,7 @@ private class ProgressTrackerTaskModalTests {
         testCta.Due_Day__c = Date.today();
         testCta.Training_Task__c = dummyTrainingTask.Id;
         testCta.Status__c = 'Not Started';
+        testCta.Time_Taken_In_Minutes__c = 10;
         testCtaList.add(testCta);
 
         Contact_Task_Assignment__c testCta2 = new Contact_Task_Assignment__c();
@@ -40,6 +41,7 @@ private class ProgressTrackerTaskModalTests {
         testCta2.Due_Day__c = Date.today();
         testCta2.Training_Task__c = dummyTrainingTask2.Id;
         testCta2.Status__c = 'Not Started';
+        testCta.Time_Taken_In_Minutes__c = 20;
         testCtaList.add(testCta2);
         insert testCtaList;
 
@@ -99,5 +101,66 @@ private class ProgressTrackerTaskModalTests {
         for(Contact_Task_Assignment__c resultCta: result){
             System.assertEquals('Complete', resultCta.Status__c);
         }
+    }
+
+    public class CTADraftValues {
+        // these variables need to be named the same as the JS variables passed into JSON deserializer, otherwise they would store null values
+        public Integer Modal_Time_Taken_In_Minutes;
+        public Id Id;
+    }
+
+    @isTest
+    static void updateTimeTakenInMinutesTest(){
+        Contact_Task_Assignment__c cta = [SELECT id, Time_Taken_In_Minutes__c
+                                                FROM Contact_Task_Assignment__c
+                                                LIMIT 1];
+        // method requires a list of values                                     
+        List<CTADraftValues> ctaInputList = new List<CTADraftValues>();
+        CTADraftValues ctaInput = new CTADraftValues();
+        ctaInput.Modal_Time_Taken_In_Minutes = 60;
+        ctaInput.id = cta.id;
+        ctaInputList.add(ctaInput);
+
+        ProgressTrackerTaskModal.updateTimeTakenInMinutes(ctaInputList);
+
+        Contact_Task_Assignment__c ctaCheck = [SELECT id, Time_Taken_In_Minutes__c
+                                                FROM Contact_Task_Assignment__c
+                                                WHERE id = :cta.id];
+                                            
+        System.assertEquals(60, ctaCheck.Time_Taken_In_Minutes__c);
+        
+    }
+
+    @isTest
+    static void bulkUpdateTimeTakenInMinutesTest(){
+        List<Contact_Task_Assignment__c> cta = [SELECT id, Time_Taken_In_Minutes__c
+                                                FROM Contact_Task_Assignment__c
+                                                LIMIT 2];
+        Set<Id> ctaSet = new Set<Id>();
+        for (Contact_Task_Assignment__c ctatemp: cta){
+            ctaSet.add(ctatemp.Id);
+        }
+        // method requires a list of values                                     
+        List<CTADraftValues> ctaInputList = new List<CTADraftValues>();
+
+        CTADraftValues ctaInput1 = new CTADraftValues();
+        ctaInput1.Modal_Time_Taken_In_Minutes = 60;
+        ctaInput1.id = cta[0].id;
+        ctaInputList.add(ctaInput1);
+
+        CTADraftValues ctaInput2 = new CTADraftValues();
+        ctaInput2.Modal_Time_Taken_In_Minutes = 50;
+        ctaInput2.id = cta[1].id;
+        ctaInputList.add(ctaInput2);
+
+        ProgressTrackerTaskModal.updateTimeTakenInMinutes(ctaInputList);
+
+        Map<Id,Contact_Task_Assignment__c> ctaCheck = new Map<Id,Contact_Task_Assignment__c>(
+            [SELECT id, Time_Taken_In_Minutes__c
+                FROM Contact_Task_Assignment__c
+                WHERE id IN :ctaSet]
+        );
+        System.assertEquals(60, ctaCheck.get(ctaInput1.id)?.Time_Taken_In_Minutes__c);
+        System.assertEquals(50, ctaCheck.get(ctaInput2.id)?.Time_Taken_In_Minutes__c);
     }
 }
