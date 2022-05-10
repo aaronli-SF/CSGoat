@@ -25,9 +25,9 @@ const MODAL_COLUMNS = [
     },
     {label: 'Status', fieldName: 'Modal_Status'},
     {label: 'Date Completed', fieldName: 'Modal_Date_Completed'},
-    {label: 'Time Taken in Minutes', fieldName: 'Modal_Time_Taken_In_Minutes', editable:true, type: 'number',
+    {label: 'Minutes Taken', fieldName: 'Modal_Time_Taken_In_Minutes', editable:true, type: 'number',
         typeAttributes:{
-            label: 'Time Taken in Minutes',
+            label: 'Minutes Taken',
             name: 'timeTakenInMinutes',
             title: 'timeTakenInMinutesTitle',
             disabled: false
@@ -88,7 +88,6 @@ export default class ProgressModal extends LightningElement {
             this.error = undefined;
             this.refreshData = result;
         }
-        
         else if(result.error){
             this.error=result.error;
             this.modalResults=undefined;
@@ -210,6 +209,7 @@ export default class ProgressModal extends LightningElement {
         const description = '';
         const priority = 'High';
         const type = 'Other';
+
         saveTask({subject: subject, 
                     description: description, 
                     priority: priority, 

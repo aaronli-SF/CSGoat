@@ -1,5 +1,5 @@
 public with sharing class ContactTaskAutomationLogicHandler {
-    public static void updateTimeTaken(List<Contact_Task_Assignment__c> ctaTrigger) {
+    public static void updateTimeTaken(List<Contact_Task_Assignment__c> ctaTrigger, List<Contact_Task_Assignment__c> oldCtaTrigger) {
 
         Map<Id, Program_Contact_Assignment__c> resultMap = new Map<Id, Program_Contact_Assignment__c>();
         Boolean multiple = false;
@@ -21,29 +21,32 @@ public with sharing class ContactTaskAutomationLogicHandler {
         );
         
         for (Contact_Task_Assignment__c triggeredCta: ctaTrigger){
-            ID currTask = triggeredCta.Training_Task__c;
-            Program_Contact_Assignment__c pca = programContactAssignmentFetch(triggeredCta);
-            Training_Task__c task = taskMap.get(currTask);
-            
-            //Create a result list to update
-            if (triggeredCta.Status__c == 'Complete'){
-                //Handle bulk apex change
-                if (multiple == true){
-                    if (myTime != Null){
-                        myTime += task.Expected_Duration_In_Minutes__c;
+            for (Contact_Task_Assignment__c oldCta: oldCtaTrigger){
+
+                ID currTask = triggeredCta.Training_Task__c;
+                Program_Contact_Assignment__c pca = programContactAssignmentFetch(triggeredCta);
+                Training_Task__c task = taskMap.get(currTask);
+                
+                //Create a result list to update
+                if (triggeredCta.Status__c == 'Complete' && oldCta.Status__c != 'Complete'){
+                    //Handle bulk apex change
+                    if (multiple == true){
+                        if (myTime != Null){
+                            myTime += task.Expected_Duration_In_Minutes__c;
+                        } else {
+                            myTime = task.Expected_Duration_In_Minutes__c;
+                        }
+                        pca.Time_Taken__c = myTime;
+                    //Handle individual apex change 
                     } else {
-                        myTime = task.Expected_Duration_In_Minutes__c;
+                        if (pca.Time_Taken__c != Null){
+                            pca.Time_Taken__c += task.Expected_Duration_In_Minutes__c;
+                        } else {
+                            pca.Time_Taken__c = task.Expected_Duration_In_Minutes__c;
+                        }
                     }
-                    pca.Time_Taken__c = myTime;
-                //Handle individual apex change 
-                } else {
-                    if (pca.Time_Taken__c != Null){
-                        pca.Time_Taken__c += task.Expected_Duration_In_Minutes__c;
-                    } else {
-                        pca.Time_Taken__c = task.Expected_Duration_In_Minutes__c;
-                    }
+                    resultMap.put(pca.Training_Program__c, pca);
                 }
-                resultMap.put(pca.Training_Program__c, pca);
             }
         }
         update resultMap.values();

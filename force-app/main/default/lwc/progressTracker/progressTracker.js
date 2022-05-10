@@ -73,7 +73,6 @@ export default class ProgressTracker extends LightningElement {
             this.currentContactRecord = data;
             this.error = undefined;
         }
-        
         if(error){
             this.error=error;
             this.currentContactRecord=undefined;
