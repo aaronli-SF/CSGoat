@@ -28,7 +28,9 @@ public with sharing class ContactTaskAutomationLogicHandler {
                 Training_Task__c task = taskMap.get(currTask);
                 
                 //Create a result list to update
-                if (triggeredCta.Status__c == 'Complete' && oldCta.Status__c != 'Complete'){
+                if (triggeredCta.Status__c == 'Complete' && 
+                        oldCta.Status__c != 'Complete' && 
+                        oldCta.Training_Task__c == triggeredCta.Training_Task__c){
                     //Handle bulk apex change
                     if (multiple == true){
                         if (myTime != Null){
