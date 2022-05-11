@@ -126,6 +126,7 @@ export default class ProgressModal extends LightningElement {
     modalFilterHandler(event){
         clearTimeout(this.searchTimer);
         let modalEventSearchText = event.target.value;
+        
         this.searchTimer = setTimeout(()=>{
             this.modalSearchText = modalEventSearchText;
         }, this.doneTypingInterval);
@@ -133,6 +134,7 @@ export default class ProgressModal extends LightningElement {
 
     handleModalRowAction(event){
         const row = event.detail.row;
+
         if (event.detail.action.name === 'blockedTask'){
             this.createNewTask(row);
         } else if (event.detail.action.name === 'completedTask'){
@@ -154,6 +156,7 @@ export default class ProgressModal extends LightningElement {
 
     handleMultiComplete(){
         let idList = [];
+
         for (let i = 0; i < this.currentSelectedRows.length; i++){
             idList.push(this.currentSelectedRows[i]["Id"])
         }
